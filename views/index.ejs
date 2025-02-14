@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EJS Template</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/all.min.css">
+</head>
+<body>
+    <%- include ('./partials/navbar') %>
+    <section class="hero-section">
+        <div class="content">
+            <h1>Are you unhappy with the way you get results?</h1>
+            <hr>
+            <p>join us in this awesome program to help transform the way you think and  produce more results.</p>
+            <button class="btn btn-action">Register Now</button>
+        </div>
+        <div class="hero-void"></div>
+    </section>
+    <section id="features-section" class="features-section">
+        <h1>What you stand to gain with MAP</h1>
+        <hr>
+        <ul class="benefit-list">
+            <li class="benefit"><div>
+                <i class="fa-solid fa-brain fa-3x"></i>
+                <h4>Enhanced Critical Thinking </h4>
+                <p>Participants learn to think independently and make informed decisions </p>
+            </div></li>
+            <li class="benefit"><div>
+                <i class="fa-solid fa-seedling fa-3x"></i>
+                <h4>Personal Evolution</h4>
+                <p>The program helps individuals recognize and harness their unique abilities</p>
+            </div></li>
+            <li class="benefit"><div>
+                <i class="fa-solid fa-handshake fa-3x"></i>
+                <h4>Community Growth</h4>
+                <p>Shared knowledge enriches both the individual and those around them, creating a ripple effect of positive change</p>
+            </div></li>
+        </ul>
+    </section>
+    <section id="about-section" class="about-section">
+        <div class="img-wrapper"></div>
+        <div class="content-wrapper">
+            <h1>About Us</h1>
+            <hr>
+            <div class="description">
+                <p>Mind Accelerator Program also known as MAP is a program designed to help people, young adults especially, realize the inherent power they possess and harness this power. The organizers of this program believe that the first step in Human Empowerment is to teach them “How to think”, give necessary information and allow them to come to self-realization about what they possess and how to use it to become who they were designed to be even before time began.</p>
+                <p>This program exposes fundamental and foundational information already known to man but hidden from the eyes of many. The beautiful thing about these information is that they are infinitely divisible. If you have them, that can help you to be more effective in your life and if it is shared, everyone is enriched.</p>
+                <p>The program amongst other programs deliberately aims to support people to become the best version of themselves.</p>
+            </div>
+        </div>    
+
+    </section>
+ 
+    <section id="testimonials-section" class="testimonials-section">
+        <h1>What People Are Saying About MAP</h1>
+        <hr>
+        <div class="testimonials-container">
+            <div class="testimonial">
+                <div class="badge"></div>
+                <img src="nitronft1.png" alt="">
+                <p>"MAP completely changed my perspective on thinking and decision-making. I feel more in control of my life!"</p>
+                <span class="author">— Alex R., Program Participant</span>
+            </div>
+            <div class="testimonial">
+                <div class="badge"></div>
+                <img src="nitronft1.png" alt="">
+                <p>"This program helped me unlock a level of self-awareness I never thought possible. Truly life-changing!"</p>
+                <span class="author">— Sophia M., Entrepreneur</span>
+            </div>
+            <div class="testimonial">
+                <div class="badge"></div>
+                <img src="nitronft1.png" alt="">
+                <p>"I now understand the power of my mind and how to use it effectively. MAP is a must for anyone seeking growth!"</p>
+                <span class="author">— David K., Student</span>
+            </div>
+            <div class="testimonial">
+                <div class="badge"></div>
+                <img src="nitronft1.png" alt="">
+                <p>"The insights I gained from MAP have helped me in both my personal and professional life. Highly recommended!"</p>
+                <span class="author">— Lisa T., Business Consultant</span>
+            </div>
+        </div>
+    </section>
+    <section id="contact-section" class="contact-section">
+        <div class="contact-form">
+            <div class="">
+                <h1>Need help? <span>Contact Us</span></h1>
+                <hr>
+            </div>
+            <input type="text" name="username" id="" placeholder="Username">
+            <input type="email" name="email" id="" placeholder="Email">
+            <select name="message-type" id="">
+                <option value="testimonial">Testimonial</option>
+                <option value="complaint">Complaint</option>
+            </select>
+            <textarea name="message-type" id="" rows="3" placeholder="Type your message here..."></textarea>
+        </div>
+    </section>
+
+    <section id="instructors-section" class="instructors-section">
+        <h1>Meet Our Instructors</h1>
+        <hr>
+        <div class="instructors-container">
+            <div class="instructor-card">
+                <img src="woman.png" alt="Instructor 1">
+                <h3>John Doe</h3>
+                <p class="title">Lead Instructor & Mind Coach</p>
+                <p>John has over 10 years of experience in cognitive development and personal growth training.</p>
+            </div>
+            <div class="instructor-card">
+                <img src="woman.png" alt="Instructor 2">
+                <h3>Jane Smith</h3>
+                <p class="title">Neuroscience Expert</p>
+                <p>Jane specializes in brain training techniques to help individuals unlock their full potential.</p>
+            </div>
+            <div class="instructor-card">
+                <img src="woman.png" alt="Instructor 3">
+                <h3>Michael Lee</h3>
+                <p class="title">Cognitive Performance Coach</p>
+                <p>Michael helps participants develop sharper focus, better decision-making, and mental resilience.</p>
+            </div>
+        </div>
+    </section>
+    <%- include ('partials/footer') %>
+</body>
+</html>
