@@ -464,15 +464,10 @@ nav.navbar .nav-list li a {
     color: #777;
 }
 
-.instructor-card .title {
-    font-weight: bold;
-    color: #777;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
 
 /* MAP TEAM STYLING */
 .map-team-section {
+  position: relative;
   color: #2d353d;
   background-color: #bcd4e6;
   background-color: #fff;
@@ -481,6 +476,86 @@ nav.navbar .nav-list li a {
   align-items: center;
   padding: 5rem 2rem;
   margin-bottom: 0rem;
+}
+
+/* Carousel Container */
+.carousel-container {
+  margin-top: 2rem;
+  max-width: 80%;  /* Ensures only one instructor is shown */
+  overflow: hidden;
+}
+
+/* Carousel Track */
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%; /* Ensures exact width, preventing empty slides */
+}
+
+.carousel i {
+  margin: .2rem;
+}
+
+/* Individual facilitator Cards */
+.facilitator-card {
+  min-width: 100%;  /* Ensures only one facilitator is visible */
+  box-sizing: border-box;
+  background: white;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.facilitator-card h3 {
+  color: #a1caf1;
+}
+.facilitator-card .title {
+  font-weight: bold;
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.facilitator-card .details {
+  border-right: 2px solid red;
+  padding: 1rem;
+  width: 30%;
+}
+
+.facilitator-card .description {
+  padding: 1rem;
+  text-wrap: wrap;
+  width: 70%;
+}
+
+.facilitator-card img {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+/* Navigation Buttons */
+.prev-btn, .next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  font-size: 20px;
+  border-radius: 2rem;
+  transition: 0.3s;
+}
+
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+.prev-btn:hover, .next-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
 }
 
 /* FOOTER STYLING */
