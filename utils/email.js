@@ -68,7 +68,7 @@ exports.classReminder = (email, username, year, batch, date) => {
             minute: '2-digit',
             hour12: true     // AM/PM format
           }) },
-          { Item: '📍 Location:', Details: 'https://meet.google.com/rwz-tama-rkb' }
+          { Item: '📍 Location:', Details: 'https://meet.google.com/qre-zpop-jqt' }
         ]
       },
       action: {
@@ -76,7 +76,7 @@ exports.classReminder = (email, username, year, batch, date) => {
         button: {
           color: '#22BC66',
           text: 'View Event Details',
-          link: 'https://meet.google.com/rwz-tama-rkb'
+          link: 'https://meet.google.com/qre-zpop-jqt'
         }
       },
       outro: 'If you have any questions, feel free to reach out. Looking forward to seeing you there!',

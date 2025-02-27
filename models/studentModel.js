@@ -10,10 +10,11 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  salary: {
-    type: Number,
-    min: 0, // Prevents negative salaries
-    default: 0, // Default salary is 0
+  dob: {
+    type: Date
+  },
+  degree: {
+    type: String
   },
   attendanceCheck: [
     {
