@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MAP Certificate</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+  </head>
+  <body style="background-color: #fff;">
+    <%- include ('./partials/navbar') %>
+    <div class="certificate-form">
+        <h2>Get Your Certificate</h2>
+        <input type="email" name="email" id="">
+        <button>Pay</button>
+    </div>
+    <%- include ('partials/footer') %>
+</body>
+<script>
+    const email = document.querySelector("input")
+    const btn = document.querySelector("button")
+
+    btn.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        console.log(email.value)
+
+        const resp = await fetch(`/pay`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: email.value })
+        })
+        const data = await resp.json()
+
+        window.location.href = data.authorization_url;
+    })
+</script>
+</html>

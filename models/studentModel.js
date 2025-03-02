@@ -11,7 +11,7 @@ const studentSchema = new mongoose.Schema({
     required: true,
   },
   dob: {
-    type: Date
+    type: Date,
   },
   degree: {
     type: String

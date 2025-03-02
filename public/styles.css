@@ -10,6 +10,8 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #bcd4e6;
+  justify-content: space-between;
+  min-height: 100vh;
 }
 
 a {
@@ -558,6 +560,74 @@ nav.navbar .nav-list li a {
   background: rgba(0, 0, 0, 0.8);
 }
 
+
+/* Partners Section */
+
+.partners-section .container {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #bcd4e6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Partners Grid */
+.partners-section .partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Individual Partner */
+.partners-section .partner {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.partners-section img {
+  height: 7rem;
+  width: 7rem;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
+.partners-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+/* Social Media Icons */
+.partners-section .social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.partners-section .social-links a {
+  font-size: 24px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.partners-section .social-links a:hover {
+  transform: scale(1.2);
+}
+
+/* Social Media Colors */
+.facebook { color: #1877F2; }
+.instagram { color: #E1306C; }
+.twitter { color: #1DA1F2; }
+.whatsapp { color: #12ec3e; }
+
+.facebook:hover { color: #3b5998; }
+.instagram:hover { color: #C13584; }
+.twitter:hover { color: #0d95e8; }
+.whatsapp:hover { color: #12ec3e; }
+
+
 /* FOOTER STYLING */
 footer.footer {
   background-color: #2d353d;
@@ -571,7 +641,7 @@ footer.footer {
   align-items: center;
 }
 
-footer.footer i {
+footer.footer a {
   color: #fff;
 }
 
@@ -583,4 +653,34 @@ footer.footer hr {
 footer.footer .social-media {
     display: flex;
     gap: 2rem
+}
+
+.certificate-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-width: 25rem;
+  max-width: 30rem;
+  width: 100%;
+  padding: 2rem;
+  align-self: center;
+}
+
+.certificate-form input, .certificate-form button {
+  border: 2px solid #7ab4eb;
+  padding: .8rem;
+  width: 100%;
+  color: #a1caf1;
+}
+
+.certificate-form button {
+  background-color: #7ab4eb;
+  color: #fff;
+}
+
+.certificate-form h2 {
+  color: #a1caf1;
+  margin-bottom: .5rem;
 }

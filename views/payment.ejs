@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Welcome to the world of MAP</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../css/all.min.css" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        .success { color: green; }
+        .failed { color: red; }
+        .error { color: orange; }
+        h1 { font-size: 22px; margin-bottom: 10px; }
+        p { font-size: 18px; color: #555; }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <%- include ('./partials/navbar') %>
+    <div class="container">
+        <% if (status === 'success') { %>
+            <i class="fas fa-check-circle icon success"></i>
+            <h1 class="success">Payment Successful!</h1>
+            <p>Reference: <strong><%= reference %></strong></p>
+            <p>Amount: <strong>₦<%= amount %></strong></p>
+        <% } else if (status === 'failed') { %>
+            <i class="fas fa-times-circle icon failed"></i>
+            <h1 class="failed">Payment Failed</h1>
+            <p>Reference: <strong><%= reference %></strong></p>
+            <p>Please try again.</p>
+        <% } else { %>
+            <i class="fas fa-exclamation-circle icon error"></i>
+            <h1 class="error">Error Processing Payment</h1>
+            <p><%= message %></p>
+        <% } %>
+
+        <a href="/" class="btn">Go Home</a>
+    </div>
+    <%- include ('partials/footer') %>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const amount = <%= amount %>; // Correct EJS syntax, ensures amount is properly inserted
+    
+            // Function to send the withdrawal request
+            const withdrawFunds = async () => {
+                try {
+                    const response = await fetch('/withdraw', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ amount }) // Send amount in JSON format
+                    });
+    
+                    const result = await response.json();
+
+                    console.log(result)
+                    
+                    if (response.ok) {
+                        console.log("Withdrawal Successful:", result);
+                    } else {
+                        console.error("Withdrawal Failed:", result.error || "Unknown error");
+                    }
+                } catch (error) {
+                    console.error("Error processing withdrawal:", error);
+                }
+            };
+    
+            // Check if the payment was successful and trigger withdrawal
+            if (document.querySelector("h1.success")) {
+                await withdrawFunds(); // Call the function with async/await
+            }
+        });
+    </script>
+    
+</body>
+</html>
