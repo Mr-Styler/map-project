@@ -1,5 +1,6 @@
 require("dotenv").config({ path: "./config.env" });
 const express = require("express");
+const serverless = require("serverless-http");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const axios = require("axios");
@@ -401,6 +402,10 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-app.listen(3000, () => {
-  console.log("Server is running on http://localhost:3000");
-});
+// Check if running on Vercel (serverless) or a traditional server (Render)
+if (process.env.VERCEL) {
+  module.exports = serverless(app); // For Vercel
+} else {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
