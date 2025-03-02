@@ -403,9 +403,6 @@ mongoose
   .catch((err) => console.log(err));
 
 // Check if running on Vercel (serverless) or a traditional server (Render)
-if (process.env.VERCEL) {
-  module.exports = serverless(app); // For Vercel
-} else {
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-}
+// Export for Vercel
+module.exports = app;
+module.exports.handler = serverless(app);
