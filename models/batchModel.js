@@ -11,12 +11,17 @@ const batchSchema = new mongoose.Schema({
     maxLength: 1,
     minLength: 1
   },
+  status: {
+    type: String,
+    enum: ["open", "closed"],
+    default: "open"
+  },
+  closeDate: {
+    type: Date
+  },
   startDate: {
     type: Date,
     required: true,
-  },
-  link: {
-    type: String
   },
   year: {
     type: String,
