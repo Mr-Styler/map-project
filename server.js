@@ -402,7 +402,6 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-// Check if running on Vercel (serverless) or a traditional server (Render)
-// Export for Vercel
-module.exports = app;
-module.exports.handler = serverless(app);
+app.listen(3000, () => {
+  console.log("Server is running on http://localhost:3000");
+});
