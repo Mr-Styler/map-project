@@ -1,6 +1,6 @@
 require("dotenv").config({ path: "./config.env" });
 const express = require("express");
-const serverless = require("serverless-http");
+const path = require("path");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const axios = require("axios");
@@ -18,7 +18,7 @@ const PAYSTACK_BASE_URL = "https://api.paystack.co";
 
 // Set the view engine to ejs
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(morgan("dev"));
 
