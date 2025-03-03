@@ -1,14 +1,27 @@
 <nav class="navbar">
     <div class="logo-wrapper">
-        <img src="logo.png" class="header-logo" alt="">
+        <img src="logo.png" class="header-logo" alt="MAP Logo">
     </div>
-    <ul class="nav-list">
-        <li class="nav-link"><a href="#about-section">About Us</a></li>
-        <li class="nav-link"><a href="#features-section">Rewards</a></li>
-        <li class="nav-link"><a href="#instructors-section">Our Facilitators</a></li>
-        <li class="nav-link"><a href="#testimonials-section">Testimonials</a></li>
-        <li class="nav-link"><a href="#faq-section">FAQs</a></li>
-        <li class="nav-link"><a href="#contact-section">Contact Us</a></li>
-        <a href="https://forms.gle/5RBioczWjpnqVkyP9" class="btn btn-action">Register Now</a>
-    </ul>
+
+    <!-- Hamburger Menu Button -->
+    <button class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Drawer Navigation -->
+    <div class="nav-drawer" id="nav-drawer">
+        <button class="close-btn" id="close-btn">&times;</button>
+        <ul class="nav-list">
+            <li class="nav-link"><a href="#about-section">About Us</a></li>
+            <li class="nav-link"><a href="#features-section">Rewards</a></li>
+            <li class="nav-link"><a href="#instructors-section">Our Facilitators</a></li>
+            <li class="nav-link"><a href="#testimonials-section">Testimonials</a></li>
+            <li class="nav-link"><a href="#faq-section">FAQs</a></li>
+            <li class="nav-link"><a href="#contact-section">Contact Us</a></li>
+            <li><a href="https://forms.gle/5RBioczWjpnqVkyP9" class="btn btn-action" target="_blank" rel="noopener">Register Now</a></li>
+        </ul>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
 </nav>
