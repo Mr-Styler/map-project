@@ -146,14 +146,35 @@ section > h1 > span {
   display: block;
 }
 
-/* RESPONSIVE */
 @media (min-width: 769px) {
   .menu-toggle {
-    display: none;
+    display: none; /* Hide the hamburger menu */
   }
 
   .nav-drawer {
-    display: none;
+    display: flex; /* Show navigation in desktop mode */
+    position: static; /* Remove fixed positioning */
+    width: auto;
+    height: auto;
+    box-shadow: none;
+    background: transparent;
+    padding-top: 0;
+  }
+
+  .nav-list {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+  }
+
+  .nav-list li {
+    padding: 0;
+  }
+
+  .nav-list a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
   }
 }
 
