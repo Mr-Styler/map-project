@@ -35,7 +35,7 @@ hr {
   color: #26282a !important;
   font-weight: bold;
   border-radius: .5rem;
-  background-color: #fff;
+  background-color: #fff !important;
   text-decoration: none;
 }
 
@@ -50,7 +50,7 @@ section > h1 {
 }
 
 section > h1 > span {
-  color: #fff;
+  color: #fff !important;
 }
 
 /* NAVBAR STYLING */
@@ -269,7 +269,7 @@ section > h1 > span {
 
 .benefit-list li.benefit h4 {
     color: #a1caf1;
-    color: #fff;
+    color: #fff !important;
 }
 
 .benefit-list li.benefit p {
@@ -309,7 +309,7 @@ section > h1 > span {
 .about-section {
   color: #2d353d;
   background-color: #bcd4e6;
-  background-color: #fff;
+  background-color: #fff !important;
   display: flex;
   padding: 5rem 2rem;
 }
@@ -386,7 +386,7 @@ section > h1 > span {
 
 .testimonial {
     aspect-ratio: 1; /* Ensures equal height and width */
-    background: #fff;
+    background: #fff !important;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -432,7 +432,7 @@ section > h1 > span {
 .faq-section {
   text-align: center;
   padding: 5rem 2rem;
-  background: #fff;
+  background: #fff !important;
 }
 
 .faq-section h2 {
@@ -453,7 +453,7 @@ section > h1 > span {
 }
 
 .faq-item {
-  background: #fff;
+  background: #fff !important;
   margin-bottom: 10px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -533,7 +533,7 @@ section > h1 > span {
   gap: 1.5rem;
   padding: 3rem;
   background-color: #a1caf1;
-  background-color: #fff;
+  background-color: #fff !important;
   min-width: 20rem;
   width: 100%;
   max-width: 30rem;
@@ -579,8 +579,8 @@ section > h1 > span {
 }
 
 .contact-form button {
-  background-color: #a1caf1;
-  color: #fff;
+  background-color: #a1caf1 !important;
+  color: #fff !important;
   border: 1px solid #a1caf1;
 }
 
@@ -627,7 +627,7 @@ section > h1 > span {
 .instructors-section {
     text-align: center;
     padding: 5rem 2rem;
-    background: #fff;
+    background: #fff !important;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -648,7 +648,7 @@ section > h1 > span {
 }
 
 .instructor-card {
-    background: #fff;
+    background: #fff !important;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -682,7 +682,7 @@ section > h1 > span {
   position: relative;
   color: #2d353d;
   background-color: #bcd4e6;
-  background-color: #fff;
+  background-color: #fff !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -819,7 +819,7 @@ section > h1 > span {
 .partners-section .partner {
   padding: 20px;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: #fff !important;
 }
 
 .partners-section img {
@@ -852,14 +852,14 @@ section > h1 > span {
 }
 
 /* Social Media Colors */
-.facebook { color: #1877F2; }
-.instagram { color: #E1306C; }
-.twitter { color: #1DA1F2; }
+.facebook, i.fa-facebook { color: #1877F2; }
+.instagram, i.fa-instagram { color: #E1306C; }
+.twitter, i.fa-x-twitter { color: #1DA1F2; }
 .whatsapp { color: #12ec3e; }
 
-.facebook:hover { color: #3b5998; }
-.instagram:hover { color: #C13584; }
-.twitter:hover { color: #0d95e8; }
+.facebook:hover, i.fa-facebook:hover { color: #3b5998; }
+.instagram:hover, i.fa-instagram:hover { color: #C13584; }
+.twitter:hover, i.fa-x-twitter:hover { color: #0d95e8; }
 .whatsapp:hover { color: #12ec3e; }
 
 
@@ -869,7 +869,7 @@ footer.footer {
   text-align: center;
   padding: 3rem 5rem;
   font-size: 1rem;
-  color: #fff;
+  color: #fff !important;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -877,7 +877,7 @@ footer.footer {
 }
 
 footer.footer a {
-  color: #fff;
+  color: #fff !important;
 }
 
 footer.footer hr {
