@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const axios = require("axios");
 const User = require("./models/userModel");
-const { welcomeEmail, classReminder } = require("./utils/email");
+const { welcomeEmail, classReminder, verifyEmail } = require("./utils/email");
 const Appointment = require("./models/appointmentModel");
 const Batch = require("./models/batchModel");
 const Transaction = require("./models/transactionModel");
@@ -29,7 +29,7 @@ app.post("/google-form-webhook", async (req, res) => {
   req.body = { ...req.body, role: "student" };
   const student = await Student.create(req.body);
 
-  await welcomeEmail(student.email, student.fullname);
+  await verifyEmail(student.email, student.fullname);
 
   res.status(201).json({
     status: "success",
@@ -193,6 +193,38 @@ app.get("/certificate", (req, res) => {
   res.render("certificate");
 });
 
+app.get("/terms-and-conditions", (req, res) => {
+  res.render("T&Cs");
+});
+
+app.post("/api/v1/verify", async (req, res) => {
+  try {
+    const {email} = req.body
+
+    if (!email) {
+      return res.status(400).json({
+        message: "Please use the link sent to your email to verify your admission"
+      })
+    }
+
+    const student = await Student.findOneAndUpdate({email}, {
+      active: true
+    }, {
+      runValidators: true,
+      new: true
+    })
+
+    await welcomeEmail(student.email, student.fullname);
+
+    res.status(200).json({message: "Congratulations your now part of the program"})
+  } catch (err) {
+    res.status(400).json({
+      message: "Sorry, something went wrong"
+    })
+  }
+  
+})
+
 // BATCH ENDPOINTS
 app.post("/api/v1/batches", async (req, res) => {
   const newBatch = await Batch.create(req.body);
@@ -318,7 +350,7 @@ app.post("/api/v1/students", async (req, res) => {
   req.body = { ...req.body, role: "student" };
   const student = await Student.create(req.body);
 
-  await welcomeEmail(student.email, student.fullname);
+  await verifyEmail(student.email, student.fullname);
 
   res.status(201).json({
     status: "success",

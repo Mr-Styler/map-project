@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions - The Mind Accelerator Program</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            background-color: #fff;
+        }
+
+        h1, h2, h3 {
+            color: #a1caf1;
+        }
+
+        .page-header, .terms-container {
+            max-width: 50rem;
+            width: 100%;
+            align-self: center;
+        }
+
+        .page-header {
+            text-align: center;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        #verifyBtn {
+            margin-top: 1rem;
+            padding: 1rem 1.3rem;
+            background-color: #a1caf1;
+            border: none;
+            color: white;
+            cursor: not-allowed;
+            border-radius: .5rem;
+            font-weight: bold;
+        }
+        #verifyBtn.enabled {
+            background-color: #7ab4eb;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <%- include ('./partials/navbar') %>
+
+    <header class="page-header">
+        <h1>Terms & Conditions</h1>
+    </header>
+
+    <main class="terms-container">
+        <section>
+            <h2>Terms and Conditions for The Mind Accelerator Program</h2>
+            <p>These Terms and Conditions ("Terms") govern your participation in The Mind Accelerator Program. By registering for and participating in the Program, you agree to be bound by these Terms. Please read them carefully.</p>
+        </section>
+
+        <section>
+            <h3>1. Program Description</h3>
+            <p>The Mind Accelerator Program is a training program designed to teach people how to think and see the importance of thinking, help people come to the realization of the truth about the power they possess, and bring to light tools and information that empower people to become the best version of themselves. The Program may include live sessions, downloadable resources, and community forum access. We reserve the right to modify the Program content, schedule, and format at our discretion.</p>
+        </section>
+
+        <section>
+            <h3>2. Registration and Payment</h3>
+            <ul>
+                <li>To register for the Program, you must complete the registration form. <span><b>THERE’S NO REGISTRATION FEE REQUIRED FOR THE PROGRAM.</b></span></li>
+                <li>There’s a cost to get the Certificate and the materials used in the course of the program.</li>
+                <li>We reserve the right to refuse registration to any individual at our discretion.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>3. Participation</h3>
+            <ul>
+                <li>Participants are expected to actively engage in the Program and adhere to the guidelines provided by the instructors.</li>
+                <li>Disruptive or disrespectful behavior will not be tolerated and may result in immediate termination from the Program without a refund.</li>
+                <li>Participants are responsible for their own internet access, equipment, and software required to participate in the Program.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>4. Intellectual Property</h3>
+            <ul>
+                <li>All materials provided as part of the Program, including but not limited to presentations, videos, documents, and software, are the intellectual property of the Program Organizers and are protected by copyright and other intellectual property laws.</li>
+                <li>Participants may not reproduce, distribute, or modify any Program materials without our prior written consent. You are granted a limited, non-exclusive, non-transferable license to access and use the materials solely for your personal, non-commercial use in connection with the Program.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>5. Confidentiality</h3>
+            <p>Participants may have access to confidential information during the Program. You agree not to disclose any confidential information to third parties without our prior written consent.</p>
+        </section>
+
+        <section>
+            <h3>6. Disclaimer of Warranties</h3>
+            <ul>
+                <li>We make no warranties, express or implied, about the effectiveness or success of the Program. The Program is provided "as is" and without any warranty of any kind.</li>
+                <li>We do not guarantee any specific results or outcomes from participating in the Program.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>7. Limitation of Liability</h3>
+            <ul>
+                <li>To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your participation in the Program, even if we have been advised of the possibility of such damages.</li>
+                <li>Our total liability to you for any claim arising out of or related to the Program shall not exceed the amount you paid for the Program.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>8. Governing Law</h3>
+            <p>These Terms shall be governed by and construed in accordance with the laws of Rivers State, Nigeria.</p>
+        </section>
+
+        <section>
+            <h3>9. Modifications</h3>
+            <p>We reserve the right to modify these Terms at any time. Any changes will be posted on our official website and will be effective immediately. Your continued participation in the Program after the posting of revised Terms constitutes your acceptance of the revised Terms.</p>
+        </section>
+
+        <section>
+            <h3>10. Contact Information</h3>
+            <p>If you have any questions about these Terms, please contact us at:</p>
+            <ul>
+                <li>Email: <a href="mailto:mapwebinar@gmail.com">mapwebinar@gmail.com</a></li>
+                <li>Phone: +2347036051375</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>11. Entire Agreement</h3>
+            <p>These Terms constitute the entire agreement between you and us regarding the Program and supersede all prior or contemporaneous communications and proposals, whether oral or written.</p>
+        </section>
+
+        <section>
+            <div class="checkbox-container">
+                <input type="checkbox" id="acceptTerms">
+                <label for="acceptTerms">I accept the terms and conditions</label>
+            </div>
+
+            <button id="verifyBtn" disabled>Verify</button>    
+        </section>
+        
+    </main>
+
+    <%- include ('./partials/footer') %>
+    <script>
+        const checkbox = document.getElementById('acceptTerms');
+        const button = document.getElementById('verifyBtn');
+
+        // Function to get query parameters from the URL
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Get user ID from the URL
+        const email = getQueryParam('email');
+
+        // Enable or disable the button based on the checkbox state
+        checkbox.addEventListener('change', function () {
+            if (this.checked) {
+                button.disabled = false;
+                button.classList.add('enabled');
+            } else {
+                button.disabled = true;
+                button.classList.remove('enabled');
+            }
+        });
+
+        // Send API request on button click
+        button.addEventListener('click', async function () {
+            if (!email) {
+                alert("User ID is missing in the URL.");
+                return;
+            }
+
+            button.textContent = "Verifying...";
+            button.disabled = true; // Prevent multiple clicks
+
+            try {
+                const response = await fetch('/api/v1/verify', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: email })
+                });
+
+                if (response.ok) {
+                    // Redirect to homepage on success
+                    window.location.href = "/";
+                } else {
+                    throw new Error("Verification failed");
+                }
+            } catch (error) {
+                alert("Error: " + error.message);
+                button.textContent = "Verify";
+                button.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
