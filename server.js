@@ -434,6 +434,20 @@ mongoose
   })
   .catch((err) => console.log(err));
 
+const verificationCorrection =async () => {
+  const registeredStudnets = await Student.find({active: true})
+
+  registeredStudnets.forEach(async student => {
+    student.active = false
+
+    await student.save()
+    await verifyEmail(student.email, student.fullname)
+    console.log("done")
+  })
+}
+
+verificationCorrection()
+
 app.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");
 });
