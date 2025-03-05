@@ -4,7 +4,7 @@ const User = require("./userModel");
 const studentSchema = new mongoose.Schema({
   active: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   occupation: {
     type: String,

@@ -21,6 +21,45 @@ const mailGenerator = new Mailgen({
   },
 });
 
+exports.verifyEmail = (email, username) => {
+  let response = {
+    body: {
+      greeting: `Hello ${username}`,
+      intro: [
+        "Thank you for registering for our MAP classes!",
+        "Your journey to Mental freedom is abou to start!",
+        "Our team is excited to have you join our program",
+        "But before you can start please verify your regsitration by reading our terms and conditions"
+      ],
+      action: {
+        instructions: "Click to verify your registration",
+        button: {
+          color: "#22BC66",
+          text: "Verify",
+          link: `${BASE_URL}/terms-and-conditions?email=${email}`,
+        },
+      },
+      outro: [
+        `If you have any questions or need assistance at any point, our support team is ready to help. You can reach out to us via the "Contact Us" section on the website, or simply shoot us an email at mapwebinar@gmail.com`,
+        `Thank you again for choosing MAP. We look forward to accompanying you on your journey to financial empowerment.`,
+      ],
+      signature: "Best regards",
+      copyright: `Copyright ${new Date().getFullYear()} MAP. All rights reserved.`,
+    },
+  };
+
+  let mail = mailGenerator.generate(response);
+
+  let msg = {
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: "Verify your MAP Admission",
+    html: mail,
+  };
+
+  return transporter.sendMail(msg);
+};
+
 exports.welcomeEmail = (email, username) => {
   let response = {
     body: {
