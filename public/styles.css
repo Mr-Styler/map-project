@@ -177,6 +177,10 @@ section > h1 > span {
     color: white;
     padding: 10px 15px;
   }
+
+  .close-btn {
+    display: none;
+  }
 }
 
 
