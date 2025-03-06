@@ -5,11 +5,12 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const axios = require("axios");
 const User = require("./models/userModel");
-const { welcomeEmail, classReminder, verifyEmail } = require("./utils/email");
+const { welcomeEmail, classReminder, verifyEmail, messageEmail } = require("./utils/email");
 const Appointment = require("./models/appointmentModel");
 const Batch = require("./models/batchModel");
 const Transaction = require("./models/transactionModel");
 const Student = require("./models/studentModel");
+const Message = require("./models/messageModel");
 const app = express();
 
 const DB_URI = process.env.DB_URI || "mongodb://localhost/MAP-db";
@@ -343,6 +344,18 @@ app.delete("/api/v1/users/:id", async (req, res) => {
   res.status(204).json({
     status: "success",
     message: "user deleted",
+  });
+});
+
+app.post("/api/v1/message", async (req, res) => {
+  req.body = { ...req.body, messageType: "enquiry" };
+  const message = await Message.create(req.body);
+
+  await messageEmail(message.email, message.fullname, message.message);
+
+  res.status(201).json({
+    status: "success",
+    message: "message sent"
   });
 });
 
