@@ -60,6 +60,31 @@ exports.verifyEmail = (email, username) => {
   return transporter.sendMail(msg);
 };
 
+exports.messageEmail = (email, username, message) => {
+  let response = {
+    body: {
+      greeting: `New Enquiry`,
+      intro: [
+        `name: ${username}`,
+        `email: ${email}`,
+        `message: ${message}`
+      ],
+      signature: "Best regards",
+      copyright: `Copyright ${new Date().getFullYear()} MAP. All rights reserved.`,
+    },
+  };
+
+  let mail = mailGenerator.generate(response);
+
+  let msg = {
+    from: process.env.EMAIL_USER,
+    to: "mapwebinar@gmail.com",
+    subject: "New Message",
+    html: mail,
+  };
+
+  return transporter.sendMail(msg);
+};
 exports.welcomeEmail = (email, username) => {
   let response = {
     body: {
