@@ -437,11 +437,7 @@ app.post("/api/v1/instructor/book", async (req, res) => {
 });
 
 mongoose
-  .connect(DB_URI, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    autoIndex: true,
-  })
+  .connect(DB_URI)
   .then(() => {
     console.log("Database connection successful");
   })
