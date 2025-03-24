@@ -441,6 +441,7 @@ app.post("/api/v1/reminder", async (req, res) => {
 
   students.forEach(async student => {
     await reminderEmail(student.email, student.fullname)
+    console.log(student.email, student.fullname)
   })
 
   res.status(200).json({
