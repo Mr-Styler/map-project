@@ -117,6 +117,54 @@ exports.welcomeEmail = (email, username) => {
   return transporter.sendMail(msg);
 };
 
+exports.reminderEmail = (email, username) => {
+  const telegramLink = "https://t.me/+MSJ9qQV0i485MjQ8"
+  const facebookLink = "https://www.facebook.com/share/1EQ1hWkimG/?mibextid=wwXIfr"
+  let response = {
+    body: {
+      greeting: `Dear ${username},`,
+      intro: [
+        "This is a reminder that your Mind Accelerator Program starts tomorrow, 25/03/2025! 🎉",
+        "We’re excited to have you on board as we embark on this transformational journey together.",
+        "If you’ve verified your application, congratulations! You’re officially a successful participant.",
+        "However, if you haven’t verified yet, please complete your verification using the link below."
+      ],
+      action: {
+        instructions: "Click below to complete your verification:",
+        button: {
+          color: "#22BC66",
+          text: "Complete Your Verification",
+          link: `${BASE_URL}/terms-and-conditions?email=${email}`
+        }
+      },
+      outro: [
+        `📌 <strong>Join our Classroom on Telegram:</strong> <a href="${telegramLink}" target="_blank">MAP Webinar Live Class</a>`,
+        `📌 <strong>Join our Community on Facebook:</strong> <a href="${facebookLink}" target="_blank">Click here</a>`,
+        "",
+        "🕗 <strong>Here are your class details:</strong>",
+        "📌 <strong>Date:</strong> Tuesday, 25th March, 2025",
+        "📌 <strong>Time:</strong> 8PM West African Time (WAT)",
+        "",
+        "Let’s get ready for a purposeful, intentional, and fulfilling journey! 🚀"
+      ],
+      signature: "Best regards,",
+      copyright: `Copyright ${new Date().getFullYear()} MAP. All rights reserved.`,
+    },
+  };
+
+  let mail = mailGenerator.generate(response);
+
+  let msg = {
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: "REMINDER!!! Your Mind Accelerator Program Starts Tomorrow at 8PM",
+    html: mail,
+  };
+
+  return transporter.sendMail(msg);
+};
+
+
 exports.classReminder = (email, username, year, batch, date) => {
   let response = {
     body: {
@@ -137,7 +185,7 @@ exports.classReminder = (email, username, year, batch, date) => {
               hour12: true, // AM/PM format
             }),
           },
-          { Item: "📍 Location:", Details: process.env.MEET_LINK },
+          { Item: "📍 Location:", Details: "https://t.me/+MSJ9qQV0i485MjQ8" },
         ],
       },
       action: {
@@ -145,7 +193,7 @@ exports.classReminder = (email, username, year, batch, date) => {
         button: {
           color: "#22BC66",
           text: "View Event Details",
-          link: process.env.MEET_LINK,
+          link: "https://t.me/+MSJ9qQV0i485MjQ8",
         },
       },
       outro:

@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const axios = require("axios");
 const User = require("./models/userModel");
-const { welcomeEmail, classReminder, verifyEmail, messageEmail } = require("./utils/email");
+const { welcomeEmail, classReminder, verifyEmail, messageEmail, reminderEmail } = require("./utils/email");
 const Appointment = require("./models/appointmentModel");
 const Batch = require("./models/batchModel");
 const Transaction = require("./models/transactionModel");
@@ -435,6 +435,18 @@ app.post("/api/v1/instructor/book", async (req, res) => {
     res.status(500).json({ status: "error", message: "Internal Server Error" });
   }
 });
+
+app.post("/api/v1/reminder", async (req, res) => {
+  const students = await Student.find()
+
+  students.forEach(async student => {
+    await reminderEmail(student.email, student.fullname)
+  })
+
+  res.status(200).json({
+    message: "All students successfully in formed"
+  })
+})
 
 mongoose
   .connect(DB_URI)
