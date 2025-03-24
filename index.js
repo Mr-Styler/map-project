@@ -11,6 +11,7 @@ const Batch = require("./models/batchModel");
 const Transaction = require("./models/transactionModel");
 const Student = require("./models/studentModel");
 const Message = require("./models/messageModel");
+const { setTimeout } = require("timers");
 const app = express();
 
 const DB_URI = process.env.DB_URI || "mongodb://localhost/MAP-db";
@@ -439,9 +440,11 @@ app.post("/api/v1/instructor/book", async (req, res) => {
 app.post("/api/v1/reminder", async (req, res) => {
   const students = await Student.find()
 
-  students.forEach(async student => {
-    await reminderEmail(student.email, student.fullname)
-    console.log(student.email, student.fullname)
+  students.forEach( student => {
+    setTimeout(async() => {
+      await reminderEmail(student.email, student.fullname)
+      console.log(student.email, student.fullname)
+    }, 10000);
   })
 
   res.status(200).json({
