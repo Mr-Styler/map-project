@@ -933,3 +933,52 @@ footer.footer .social-media {
   color: #a1caf1;
   margin-bottom: .5rem;
 }
+
+
+
+/* ATTENDANCE STYLING */
+
+.attendance-form {
+  align-self: center;
+  padding: 2rem;
+  border-radius: .5rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.attendance-form h1 {
+  color: #7ab4eb;
+  text-align: center;
+}
+
+.attendance-form p {
+  font-size: .8rem;
+}
+.attendance-form .form-body {
+  width: 100%;
+}
+
+.attendance-form input {
+  width: 100%;
+  border: 2px solid #a1caf1;
+  padding: .5rem;
+  border-radius: .2rem;
+  color: #a1caf1;
+  box-sizing: border-box;
+}
+
+.attendance-form .form-footer {
+  width: 100%;
+}
+
+.attendance-form button {
+  background-color: #a1caf1;
+  padding: .5rem;
+  border: 1px solid #a1caf1;
+  width: 100%;
+  color: #fff;
+  font-weight: bold;
+}

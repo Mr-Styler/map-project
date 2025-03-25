@@ -4,6 +4,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const axios = require("axios");
+const crypto = require("crypto")
 const User = require("./models/userModel");
 const { welcomeEmail, classReminder, verifyEmail, messageEmail, reminderEmail } = require("./utils/email");
 const Appointment = require("./models/appointmentModel");
@@ -197,6 +198,10 @@ app.get("/certificate", (req, res) => {
 
 app.get("/terms-and-conditions", (req, res) => {
   res.render("T&Cs");
+});
+
+app.get("/attendance/:dateHash", (req, res) => {
+  res.render("attendance");
 });
 
 app.post("/api/v1/verify", async (req, res) => {
@@ -451,6 +456,62 @@ app.post("/api/v1/reminder", async (req, res) => {
     message: "All students successfully in formed"
   })
 })
+
+
+app.post("/api/v1/attendance", async (req, res) => {
+  try {
+    const { date } = req.body; // Extract date from request body
+
+    if (!date) {
+      return res.status(400).json({ message: "Date is required" });
+    }
+
+    // Create a hash using the provided date
+    const dateHash = crypto.createHash("sha256").update(date).digest("hex");
+
+    res.status(200).json({
+      message: "Attendance link created",
+      data: {
+        link: `${req.protocol}://${req.get("host")}/attendance/${dateHash}`,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
+
+app.post("/api/v1/attendance/check", async (req, res) => {
+  try {
+    const { email, dateHash } = req.body; // Extract date from request body
+
+    const newDate = new Date(); // Example date
+    const formattedDate = newDate.toISOString().split("T")[0];
+    const isMatch = crypto.createHash("sha256").update(formattedDate).digest("hex") === dateHash;
+
+    if (!isMatch) {
+      return res.status(400).json({ message: "You're too late to check 'present' for attendance" });
+    }
+
+    const student = await Student.findOneAndUpdate({email}, {$push: {attendanceCheck: {date: new Date(formattedDate), status: "present" }}}, {
+      runValidators: true,
+      new: true
+    })
+
+    console.log(student.attendanceCheck)
+
+    res.status(200).json({
+      message: "Attendance link created",
+      data: {
+        link: `${req.protocol}://${req.get("host")}/attendance/${dateHash}`,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+});
+
+
+
 
 mongoose
   .connect(DB_URI)
