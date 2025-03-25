@@ -12,12 +12,13 @@ const config = {
 };
 
 const transporter = nodemailer.createTransport(config);
-
 const mailGenerator = new Mailgen({
   theme: "default",
   product: {
     name: "Mind Accelerator Program",
     link: BASE_URL,
+    logo: "https://mapwebinar.onrender.com/logo.jpg", // Replace with your actual logo URL
+    logoHeight: "100px", // Adjust height as needed
   },
 });
 
@@ -29,7 +30,8 @@ exports.verifyEmail = (email, username) => {
         "Thank you for registering for our MAP classes!",
         "Your journey to Mental freedom is abou to start!",
         "Our team is excited to have you join our program",
-        "But before you can start please verify your regsitration by reading our terms and conditions"
+        "But before you can start please verify your regsitration by reading our terms and conditions",
+        "Note that verification end by 4:30 pm today"
       ],
       action: {
         instructions: "Click to verify your registration",
@@ -124,7 +126,7 @@ exports.reminderEmail = (email, username) => {
     body: {
       greeting: `Dear ${username},`,
       intro: [
-        "This is a reminder that your Mind Accelerator Program starts tomorrow, 25/03/2025! 🎉",
+        "This is a reminder that your Mind Accelerator Program starts today, 25/03/2025! 🎉",
         "We’re excited to have you on board as we embark on this transformational journey together.",
         "If you’ve verified your application, congratulations! You’re officially a successful participant.",
         "However, if you haven’t verified yet, please complete your verification using the link below."
@@ -138,7 +140,7 @@ exports.reminderEmail = (email, username) => {
         }
       },
       outro: [
-        `📌 <strong>Join our Classroom on Telegram:</strong> <a href="${telegramLink}" target="_blank">MAP Webinar Live Class</a>`,
+        `📌 <strong>Join our Classroom on Telegram:</strong> <a href="${telegramLink}" target="_blank">MAP Webinar Telegram Live Class</a> or <a href="${process.env.MEET_LINK}" target="_blank">MAP Webinar Google Meet Live Class</a>`,
         `📌 <strong>Join our Community on Facebook:</strong> <a href="${facebookLink}" target="_blank">Click here</a>`,
         "",
         "🕗 <strong>Here are your class details:</strong>",
@@ -157,7 +159,7 @@ exports.reminderEmail = (email, username) => {
   let msg = {
     from: process.env.EMAIL_USER,
     to: email,
-    subject: "REMINDER!!! Your Mind Accelerator Program Starts Tomorrow at 8PM",
+    subject: "REMINDER!!! Your Mind Accelerator Program Starts Today",
     html: mail,
   };
 
@@ -168,11 +170,11 @@ exports.reminderEmail = (email, username) => {
 exports.classReminder = (email, username, year, batch, date) => {
   let response = {
     body: {
-      name: `${username},`,
+      name: `${username}`,
       intro: "We’re excited to remind you about an upcoming class!",
       table: {
         data: [
-          { Item: "📅 Event:", Details: `MAP ${year} Batch ${batch}` },
+          { Item: "📅 Event:", Details: `MAP ${year} Batch ${batch} on Telegram` },
           {
             Item: "🗓 Date:",
             Details: new Date(date).toLocaleString("en-US", {
@@ -189,11 +191,11 @@ exports.classReminder = (email, username, year, batch, date) => {
         ],
       },
       action: {
-        instructions: "Click below to view more details:",
+        instructions: "Click below to join with Google Meet:",
         button: {
           color: "#22BC66",
-          text: "View Event Details",
-          link: "https://t.me/+MSJ9qQV0i485MjQ8",
+          text: "Join via Google Meet",
+          link: `${process.env.MEET_LINK}`,
         },
       },
       outro:
@@ -208,7 +210,7 @@ exports.classReminder = (email, username, year, batch, date) => {
   let msg = {
     from: process.env.EMAIL_USER,
     to: email,
-    subject: "MAP google meet invite",
+    subject: "MAP Live Class Invite",
     html: mail,
   };
 
