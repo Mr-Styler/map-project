@@ -187,7 +187,8 @@ exports.classReminder = (email, username, year, batch, date) => {
               hour12: true, // AM/PM format
             }),
           },
-          { Item: "📍 Location:", Details: "https://t.me/+MSJ9qQV0i485MjQ8" },
+          { Item: "📍 Telegram Location:", Details: "https://t.me/+MSJ9qQV0i485MjQ8" },
+          { Item: "📍 Zoom Location:", Details: "https://us06web.zoom.us/j/88512886077?pwd=V290wtXa2Ro5bMnyxwyl9FBdybhdLH.1" },
         ],
       },
       action: {
