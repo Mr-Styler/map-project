@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAP Live Class Attendance</title>
+    <link rel="stylesheet" href="../../css/all.min.css" />
+    <link rel="stylesheet" href="../../styles.css" />
+</head>
+<body>
+    <%- include ('./partials/navbar') %>
+    <div class="attendance-form">
+        <div class="header">
+            <h1>Attendance form</h1>
+            <p>Input your email to confirm that you atended today's class</p>
+        </div>
+
+        <div class="form-body">
+            <input type="email" placeholder="Enter your email">
+        </div>
+        <div class="form-footer">
+            <button>Submit</button>
+        </div>
+    </div>
+    <%- include ('partials/footer') %>
+</body>
+<script>
+    const email = document.querySelector("input")
+    const btn = document.querySelector(".attendance-form button")
+    const pathParts = window.location.pathname.split("/");
+    const dateHash = pathParts.pop(); 
+
+    btn.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        const resp = await fetch(`/api/v1/attendance/check`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: email.value, dateHash })
+        })
+        const data = await resp.json()
+
+        alert(data.message)
+
+        if (resp.ok) {
+            window.location.href = "/"
+        }
+    })
+</script>
+</html>
